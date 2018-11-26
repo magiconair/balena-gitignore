@@ -1,0 +1,7 @@
+FROM golang:1.11.2-alpine
+WORKDIR /go/src/github.com/magiconair/balena-github
+COPY . .
+RUN ls -la vendor/
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
+RUN cp balena-github /bin
+CMD ["balena-github"]
